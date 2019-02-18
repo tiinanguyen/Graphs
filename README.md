@@ -1,9 +1,9 @@
 # Graphs
 
-A. Introduction
+## A. Introduction
 For this final project, you will be writing a library package to provide facilities for manipulating graphs, plus two clients that use the package. The package must be general: no specifics of either client may find their way into the code for the graph package. We will check that by running our own clients against your package. That is, in contrast to past projects where we didn't care how you arranged the internals of your program as long as it functioned according to the specification, in this case, part of the project code—the API for the graph package—will be set in stone.
 
-B. Client: Make
+## B. Client: Make
 We've been using the Make program (specifically, GNU Make) in most programming assignments this semester. For this project, we are going to implement a much stripped-down version. An input file ("makefile") will consist of rules that indicate that one set of objects (called targets) depends on another set (called prerequisites). Any line that starts with # or contains only tabs and blanks is ignored. For other lines, the syntax is
 
 T: P1 P2⋯ Pm
@@ -86,7 +86,7 @@ where CHANGEDATE is an integer indicating a time (the larger the time, the young
 
 The first line of the FILEINFO file contains only a date (that is, an integer), indicating the current time, that is larger than any CHANGEDATE in the file.
 
-C. Client: Trip finder
+## C. Client: Trip finder
 You are probably already familiar with GPS mapping services such as Google Maps, Waze, etc. Such systems "know" about a network of roads, and given two end points (and perhaps some waypoints in between) will pick out a shortest route. This next client will be a stripped-down version. Specifically, given a map and a request—a sequence of two or more points on the map—it will produce a shortest route from the first point to the second, third, and so forth.
 
 The map file will be in free format (a sequence of "words" which contain no whitespace that are separated by whitespace—blanks, tabs, newlines, etc.). Information comes in two forms: location entries, introduced by the letter L, and road entries, introduced by the letter R.
@@ -137,12 +137,12 @@ java trip.Main [ -m MAP ] [ -o OUT ] START_PLACE PLACE ...
 
 MAP (default Map) is the name of the file containing the map data. OUT (default, the standard output) receives the solution. START_PLACE PLACE... is a list of two or more names of points on the map.
 
-D. The Graph Package
+## D. The Graph Package
 You should implement these two clients using the graph package whose interface we've supplied. The package graph will export several classes (marked public in the skeleton) and no other public classes. You can add classes to the package as long as they are not public. You can add members to the public classes, as long as they are overridings of public methods or are not public or protected. You can change methods, but not the signatures (types of parameters and return values) of public or protected methods. We will test your graph package separately, exercising methods that might not be used by either of the clients you implement, so unit tests will be particularly useful. Likewise, we will test your clients using our graph package, so that your clients must rely only on the published spec, and not on any special behavior of your particular implementation.
 
 To make life a bit more interesting, we impose the following restriction: you may not use HashSet, HashMap, Hashtable, TreeSet, or TreeMap in your representations of graphs. You may use any List subtypes you find useful. (In our implementation, we use Java arrays, replacing pointers with array indices, as we did in the CompactLinkedList class in HW 5, but without the fancy pointer-compression trick we used there (ArrayLists also work for this purpose). This representation allows us to implement the edgeId method by simply returning the index of the edge in the array we used to store edges). It's OK to use the TreeSet class for the priority queue that is used in implementing Dijkstra's algorithm and A* search. (As you will find, using java.util.PriorityQueue for this purpose won't quite work, since the priorities of queued values change while they are in the queue, requiring that they be removed and reinserted at their new priorities—which is quite a slow operation in a PriorityQueue.)
 
-E. Your Task
+## E. Your Task
 Get or update the skeleton in the usual way (after committing all current work)
 
 git fetch shared
@@ -174,7 +174,7 @@ will run the command
 java -ea trip.Main -m TEST.map <contents of TEST.in>
 and check the results against TEST.std after filtering out leading and trailing whitespace and blank lines.
 
-F. Advice
+## F. Advice
 Use git to commit your work regularly (checking with git status to make sure you haven't missed anything). This provides backup. It's the safest way to transport things from a copy of your project on a local computer to (commit and push) and from (pull) the instructional machines. Frequent commits will limit the amount of work you have to do when a file gets messed up.
 
 Use of make style not only encourages proper formatting, but also shows you missing documentation or left-over internal comments that might indicate work that still needs to be done, and can find certain error-prone constructs or bad practices.
